@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   smurfs: [],
-  fetchingSmurfs: false,
+  fetching: false,
   addingSmurf: false,
   updatingSmurf: false,
   deletingSmurf: false,

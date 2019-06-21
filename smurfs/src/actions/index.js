@@ -4,17 +4,17 @@ export const FETCH_SMURFS_START = 'FETCH_SMURFS_START';
 export const FETCH_SMURFS_SUCCESS = 'FETCH_SMURFS_SUCCESS';
 export const FETCH_ERROR = 'FETCH_ERROR';
 
-export const fetchCharacters = () => dispatch => {
+export const fetchSmurfs = () => dispatch => {
   dispatch({
     type: FETCH_SMURFS_START
   });
   axios
-    .get('https://cors-anywhere.herokuapp.com/https://swapi.co/api/people')
+    .get('http://localhost:3333/smurfs')
     .then(res => {
       console.log('response:', res);
       dispatch({
         type: FETCH_SMURFS_SUCCESS,
-        payload: res
+        payload: res.data
       });
     })
     .catch(err => {
