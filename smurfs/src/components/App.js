@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './App.scss';
+import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 
 import Smurfs from './Smurfs';
-import { fetchSmurfs } from '../actions';
+import SmurfNav from './SmurfNav';
+import SmurfForm from './SmurfForm';
+import { fetchSmurfs, addSmurf } from '../actions';
 
 /*
  to wire this component up you're going to need a few things.
@@ -22,9 +25,18 @@ class App extends React.Component {
     }
     return (
       <div className='App'>
-        <h1>SMURFS! 2.0 W/ Redux</h1>
+        <SmurfNav />
         <div className='MainContainer'>
-          <Smurfs smurfs={this.props.smurfs} />
+          <Route
+            exact
+            path='/'
+            render={props => <Smurfs smurfs={this.props.smurfs} />}
+          />
+          <Route
+            exact
+            path='/smurf-form'
+            render={props => <SmurfForm addSmurf={this.props.addSmurf} />}
+          />
         </div>
       </div>
     );
@@ -41,5 +53,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchSmurfs }
+  { fetchSmurfs, addSmurf }
 )(App);
